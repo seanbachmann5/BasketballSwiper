@@ -6,8 +6,8 @@
 //  Copyright © 2019 CLC.Bachmann. All rights reserved.
 //
 
-import XCTest
-@testable import BasketballSwiper
+/*import XCTest
+@testable import //BasketballSwiper
 
 class BasketballSwiperTests: XCTestCase {
 
@@ -31,4 +31,4 @@ class BasketballSwiperTests: XCTestCase {
         }
     }
 
-}
+}*/
