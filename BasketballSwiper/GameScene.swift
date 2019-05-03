@@ -10,6 +10,11 @@ import SpriteKit
 import GameplayKit
 
 class GameScene: SKScene {
+    
+    var holding:Timer!
+    
+    
+    
     override func didMove(to view: SKView) {
         
         var swipeRight = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
@@ -43,7 +48,12 @@ class GameScene: SKScene {
             }
         }
     }
+    @objc func runGame(){
     
+    
+    holding = Timer.scheduledTimer(timeInterval:0.7, target: self, selector:
+        #selector(runGame), userInfo: nil, repeats:true)
+}
     
     
     
