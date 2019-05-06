@@ -9,15 +9,30 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene, UIGestureRecognizerDelegate {
+class GameScene: SKScene {
    
-    
+   var player = SKSpriteNode()
     
     override func didMove(to view: SKView) {
+       self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        player.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
-        
-       
+        player = SKSpriteNode(imageNamed: "Basketball")
+ player.position = CGPoint(x: 0, y: 0)
+  self.addChild(player)
+    }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        <#code#>
+    }
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for touch in touches{
+        let location = touch.location(in: self)
+            player.position.x = location.x
+            player.position.y = location.y
+            
+        
+    }
     
     
     
@@ -26,5 +41,6 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
    
     
     
+
 
 }
