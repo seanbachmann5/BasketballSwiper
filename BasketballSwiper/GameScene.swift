@@ -9,7 +9,8 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene {
+class GameScene: SKScene, UIGestureRecognizerDelegate {
+   
     
     var holding:Timer!
     
