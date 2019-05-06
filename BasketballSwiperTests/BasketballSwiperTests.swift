@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import BasketballSwiper
+//@testable import BasketballSwiper
 
 class BasketballSwiperTests: XCTestCase {
 

@@ -9,14 +9,19 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene {
+class GameScene: SKScene, UIGestureRecognizerDelegate {
+   
+    
+    
     override func didMove(to view: SKView) {
         
-        var swipeRight = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
+        
+        
+        var swipeRight = UISwipeGestureRecognizer(target: self, action: Selector(("respondToSwipeGesture:")))
         swipeRight.direction = UISwipeGestureRecognizer.Direction.right
         self.view?.addGestureRecognizer(swipeRight)
         
-        var swipeDown = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
+        var swipeDown = UISwipeGestureRecognizer(target: self, action: Selector(("respondToSwipeGesture:")))
         swipeDown.direction = UISwipeGestureRecognizer.Direction.down
         self.view?.addGestureRecognizer(swipeDown)
         
