@@ -21,7 +21,7 @@ class GameScene: SKScene {
  player.position = CGPoint(x: 0, y: 0)
   player.scale(to: CGSize(width: 75, height: 75))
         self.addChild(player)
-    
+    //comment
     }
     
 
