@@ -18,13 +18,12 @@ class GameScene: SKScene {
         player.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         //hi
         player = SKSpriteNode(imageNamed: "Basketball")
- player.position = CGPoint(x: 0, y: 0)
+ player.physicsBody?.affectedByGravity = true
+        player.scale(to: CGSize(width: 75, height: 75))
+        player.position = CGPoint(x: 0, y: 0)
   self.addChild(player)
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        //called when touch starts
-    }
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches{
         let location = touch.location(in: self)
@@ -33,7 +32,9 @@ class GameScene: SKScene {
             
         
     }
-    
+      
+         
+
     
     
 }
@@ -41,6 +42,7 @@ class GameScene: SKScene {
    
     
     
+
 
 
 }
