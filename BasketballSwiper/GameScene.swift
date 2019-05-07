@@ -26,6 +26,7 @@ override func didMove(to view: SKView) {
         let border = SKPhysicsBody(edgeLoopFrom: self.frame)
         self.physicsBody = border
    player.physicsBody?.affectedByGravity = true
+  //trying to commit
     }
     
  
