@@ -19,12 +19,12 @@ class GameScene: SKScene {
         //hi
         player = SKSpriteNode(imageNamed: "Basketball")
  player.position = CGPoint(x: 0, y: 0)
-  self.addChild(player)
+  player.scale(to: CGSize(width: 75, height: 75))
+        self.addChild(player)
+    
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        //called when touch starts
-    }
+
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches{
         let location = touch.location(in: self)
