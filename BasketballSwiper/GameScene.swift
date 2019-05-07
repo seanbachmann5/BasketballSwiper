@@ -28,7 +28,7 @@ override func didMove(to view: SKView) {
    player.physicsBody?.affectedByGravity = true
     }
     
-
+ 
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches{
         let location = touch.location(in: self)
@@ -41,6 +41,10 @@ override func didMove(to view: SKView) {
     
     
 }
+    
+    
+    
+
 
    
     
