@@ -21,12 +21,13 @@ override func didMove(to view: SKView) {
         player = SKSpriteNode(imageNamed: "Basketball")
  player.position = CGPoint(x: 0, y: 0)
   player.scale(to: CGSize(width: 75, height: 75))
-        self.addChild(player)
+    
         
         let border = SKPhysicsBody(edgeLoopFrom: self.frame)
         self.physicsBody = border
    player.physicsBody?.affectedByGravity = true
   //trying to commit
+   self.addChild(player)
     }
     
  
