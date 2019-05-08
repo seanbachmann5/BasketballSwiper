@@ -13,7 +13,7 @@ var player = SKSpriteNode()
 
 class GameScene: SKScene {
 override func didMove(to view: SKView) {
-    var player = SKSpriteNode()
+    
     
     self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         player.anchorPoint = CGPoint(x: 0.5, y: 0.5)
@@ -21,13 +21,12 @@ override func didMove(to view: SKView) {
         player = SKSpriteNode(imageNamed: "Basketball")
  player.position = CGPoint(x: 0, y: 0)
   player.scale(to: CGSize(width: 75, height: 75))
-    
-        
-        let border = SKPhysicsBody(edgeLoopFrom: self.frame)
-        self.physicsBody = border
-   player.physicsBody?.affectedByGravity = true
   //trying to commit
-   self.addChild(player)
+    let border = SKPhysicsBody(edgeLoopFrom: self.frame)
+    self.physicsBody = border
+    self.addChild(player)
+    player.physicsBody?.affectedByGravity = true
+    
     }
     
  
