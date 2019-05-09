@@ -18,9 +18,10 @@ var player = SKSpriteNode()
 var basketballHoop = SKSpriteNode()
 
 class GameScene: SKScene,SKPhysicsContactDelegate  {
-override func didMove(to view: SKView) {
-    physicsWorld.contactDelegate = self
 
+    override func didMove(to view: SKView) {
+      
+        physicsWorld.contactDelegate = self
     self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         player.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         player = SKSpriteNode(imageNamed: "Basketball")
@@ -30,36 +31,37 @@ override func didMove(to view: SKView) {
     //trying to commit
     let border = SKPhysicsBody(edgeLoopFrom: self.frame)
     self.physicsBody = border
-  basketballHoop.physicsBody?.contactTestBitMask = physicsCategory.basketballHoop
+  player.physicsBody?.contactTestBitMask = physicsCategory.basketballHoop
     player.physicsBody?.categoryBitMask = physicsCategory.player
     player.physicsBody?.affectedByGravity = true
     self.addChild(player)
+   
     }
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches{
         let location = touch.location(in: self)
             player.position.x = location.x
             player.position.y = location.y
-    }
+ 
+            
+        }
         func createBasketballHoop() {
             let basketballHoop = SKSpriteNode(imageNamed: "Basketball Hoop")
             //enemy.position = randomPoint()
            // basketballHoop.physicsBody = SKPhysicsBody(rectangleOf: basketballHoop.size)
            basketballHoop.physicsBody?.mass = 1
-            basketballHoop.scale(to: CGSize(width: 50, height: 50))
+            basketballHoop.scale(to: CGSize(width: 750, height: 750))
            basketballHoop.physicsBody?.categoryBitMask = physicsCategory.basketballHoop
             basketballHoop.physicsBody?.contactTestBitMask = physicsCategory.player
             //enemy.physicsBody?.collisionBitMask = PhysicsCategory.none
-            basketballHoop.physicsBody?.isDynamic = true
             addChild(basketballHoop)
             
-            let actionMove = SKAction.move(to: CGPoint(x: 0, y: 300), duration: TimeInterval(CGFloat.random(in: 2.0...4.0)))
-            let actionMoveDone = SKAction.removeFromParent()
-           basketballHoop.run(SKAction.sequence([actionMove,actionMoveDone]))
+            let actionMove = SKAction.pause()
+           basketballHoop.run(SKAction.sequence([actionMove]))
          
 
     
-    
+
 }
     
         func didBegin(_ contact: SKPhysicsContact) {
@@ -71,9 +73,9 @@ override func didMove(to view: SKView) {
        
         }
 
-
+createBasketballHoop()
    
-    
+ 
     
 
 
