@@ -20,7 +20,20 @@ var score = 0
 var myScoreLabel:SKLabelNode!
 
 class GameScene: SKScene,SKPhysicsContactDelegate  {
-
+    
+    func scoreCount() {
+        score += 2
+        if let myScoreLabel = self.childNode(withName: "Score") as? SKLabelNode{
+            myScoreLabel.text = "Score  \(score)"
+        }
+    }
+    
+    func scoreRemove() {
+        score -= 1
+        if let myScoreLabel = self.childNode(withName: "Score") as? SKLabelNode{
+            myScoreLabel.text = "Score  \(score)"
+        }
+    }
     override func didMove(to view: SKView) {
       
         physicsWorld.contactDelegate = self
