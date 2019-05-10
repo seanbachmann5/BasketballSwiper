@@ -35,22 +35,22 @@ class GameScene: SKScene,SKPhysicsContactDelegate  {
         }
     }
     override func didMove(to view: SKView) {
-      
+        
         physicsWorld.contactDelegate = self
     self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         player.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         player = SKSpriteNode(imageNamed: "Basketball")
- player.position = CGPoint(x: 0, y: 0)
-  player.scale(to: CGSize(width: 75, height: 75))
-  player.zPosition = 1
+        player.position = CGPoint(x: 0, y: 0)
+        player.scale(to: CGSize(width: 75, height: 75))
+        player.zPosition = 1
     //trying to commit
     let border = SKPhysicsBody(edgeLoopFrom: self.frame)
     self.physicsBody = border
-  player.physicsBody?.contactTestBitMask = physicsCategory.basketballHoop
-    player.physicsBody?.categoryBitMask = physicsCategory.player
-    player.physicsBody?.affectedByGravity = true
+        player.physicsBody?.contactTestBitMask = physicsCategory.basketballHoop
+        player.physicsBody?.categoryBitMask = physicsCategory.player
+        player.physicsBody?.affectedByGravity = true
     self.addChild(player)
-   
+    
     }
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches{
@@ -64,15 +64,15 @@ class GameScene: SKScene,SKPhysicsContactDelegate  {
             let basketballHoop = SKSpriteNode(imageNamed: "Basketball Hoop")
             //enemy.position = randomPoint()
            // basketballHoop.physicsBody = SKPhysicsBody(rectangleOf: basketballHoop.size)
-           basketballHoop.physicsBody?.mass = 1
+            basketballHoop.physicsBody?.mass = 1
             basketballHoop.scale(to: CGSize(width: 750, height: 750))
-           basketballHoop.physicsBody?.categoryBitMask = physicsCategory.basketballHoop
+            basketballHoop.physicsBody?.categoryBitMask = physicsCategory.basketballHoop
             basketballHoop.physicsBody?.contactTestBitMask = physicsCategory.player
             //enemy.physicsBody?.collisionBitMask = PhysicsCategory.none
             addChild(basketballHoop)
             
             let actionMove = SKAction.pause()
-           basketballHoop.run(SKAction.sequence([actionMove]))
+            basketballHoop.run(SKAction.sequence([actionMove]))
          
 
     
@@ -88,8 +88,6 @@ class GameScene: SKScene,SKPhysicsContactDelegate  {
        
         }
 
-createBasketballHoop()
-   
  
     
 
