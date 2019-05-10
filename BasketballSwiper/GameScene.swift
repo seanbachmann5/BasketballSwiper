@@ -9,8 +9,8 @@
 import SpriteKit
 import GameplayKit
 struct physicsCategory {
-     static let player: UInt32 = 1
-    static let basketballHoop: UInt32 = 2
+        static let player: UInt32 = 1
+        static let basketballHoop: UInt32 = 2
 
 }
 
@@ -30,7 +30,8 @@ class GameScene: SKScene,SKPhysicsContactDelegate  {
     
    
     override func didMove(to view: SKView) {
-     
+        let border = SKPhysicsBody(edgeLoopFrom: self.frame)
+        self.physicsBody = border
         createBasketballHoop()
         
         physicsWorld.contactDelegate = self
@@ -40,12 +41,16 @@ class GameScene: SKScene,SKPhysicsContactDelegate  {
         player.position = CGPoint(x: 0, y: 0)
         player.scale(to: CGSize(width: 75, height: 75))
         player.zPosition = 1
+      
     //trying to commit
-let border = SKPhysicsBody(edgeLoopFrom: self.frame)
-self.physicsBody = border
+        
+
+        
+        player.physicsBody = SKPhysicsBody(circleOfRadius: player.size.width / 2)
         player.physicsBody?.contactTestBitMask = physicsCategory.basketballHoop
         player.physicsBody?.categoryBitMask = physicsCategory.player
         player.physicsBody?.affectedByGravity = true
+        player.physicsBody?.mass = 0.1
 self.addChild(player)
    
     }
@@ -65,6 +70,7 @@ self.addChild(player)
             basketballHoop.scale(to: CGSize(width: 750, height: 750))
             basketballHoop.physicsBody?.categoryBitMask = physicsCategory.basketballHoop
             basketballHoop.physicsBody?.contactTestBitMask = physicsCategory.player
+            basketballHoop.zPosition = -1
             //enemy.physicsBody?.collisionBitMask = PhysicsCategory.none
             addChild(basketballHoop)
             
@@ -80,8 +86,8 @@ self.addChild(player)
             print("contact")
             let one = contact.bodyA.node as? SKSpriteNode
             let two = contact.bodyB.node as? SKSpriteNode
-            one?.removeFromParent()
-            two?.removeFromParent()
+          //  one?.removeFromParent()
+         //   two?.removeFromParent()
        
         }
 
