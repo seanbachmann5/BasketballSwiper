@@ -27,7 +27,6 @@ class GameScene: SKScene,SKPhysicsContactDelegate  {
             myScoreLabel.text = "Score  \(score)"
         }
     }
-    
    
     override func didMove(to view: SKView) {
         let border = SKPhysicsBody(edgeLoopFrom: self.frame)
