@@ -17,7 +17,7 @@ struct physicsCategory {
 var player = SKSpriteNode()
 var basketballHoop = SKSpriteNode()
 var score = 0
-var myScoreLabel:SKSpriteNode!
+var myScoreLabel:SKLabelNode!
 
 class GameScene: SKScene,SKPhysicsContactDelegate  {
     
