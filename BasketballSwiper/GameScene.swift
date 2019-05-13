@@ -33,7 +33,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate  {
         let border = SKPhysicsBody(edgeLoopFrom: self.frame)
         self.physicsBody = border
         createBasketballHoop()
-        
+        scoreCount()
         physicsWorld.contactDelegate = self
     self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         player.anchorPoint = CGPoint(x: 0.5, y: 0.5)
@@ -83,13 +83,14 @@ self.addChild(player)
 }
     
         func didBegin(_ contact: SKPhysicsContact) {
-            print("contact")
+            print("Add Score")
             let one = contact.bodyA.node as? SKSpriteNode
             let two = contact.bodyB.node as? SKSpriteNode
-          //  one?.removeFromParent()
-         //   two?.removeFromParent()
+            //one?.removeFromParent()
+            //two?.removeFromParent()
        
         }
+    
 
    
  
