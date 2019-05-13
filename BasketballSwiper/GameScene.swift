@@ -66,7 +66,8 @@ self.addChild(player)
             //enemy.position = randomPoint()
            // basketballHoop.physicsBody = SKPhysicsBody(rectangleOf: basketballHoop.size)
             basketballHoop.physicsBody?.mass = 1
-            basketballHoop.scale(to: CGSize(width: 750, height: 750))
+            basketballHoop.scale(to: CGSize(width: 653, height: 496))
+            basketballHoop.position = CGPoint(x: -0, y: 419)
             basketballHoop.physicsBody?.categoryBitMask = physicsCategory.basketballHoop
             basketballHoop.physicsBody?.contactTestBitMask = physicsCategory.player
             basketballHoop.zPosition = -1
