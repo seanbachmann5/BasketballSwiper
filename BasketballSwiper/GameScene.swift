@@ -22,9 +22,10 @@ var myScoreLabel:SKLabelNode!
 class GameScene: SKScene,SKPhysicsContactDelegate  {
     
     func scoreCount() {
-        score += 2
-        if let myScoreLabel = self.childNode(withName: "Score") as? SKLabelNode{
-            myScoreLabel.text = "Score  \(score)"
+        score += 1
+            if let myScoreLabel = self.childNode(withName: "Score") as? SKLabelNode{
+           
+                myScoreLabel.text = "Score  \(score)"
         }
     }
    
@@ -33,6 +34,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate  {
         self.physicsBody = border
         createBasketballHoop()
         scoreCount()
+        print("score Added")
         physicsWorld.contactDelegate = self
     self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         player.anchorPoint = CGPoint(x: 0.5, y: 0.5)
