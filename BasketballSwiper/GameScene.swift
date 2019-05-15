@@ -22,7 +22,7 @@ var myScoreLabel:SKLabelNode!
 class GameScene: SKScene,SKPhysicsContactDelegate  {
     
     func scoreCount() {
-        score += 1
+        score += 2
             if let myScoreLabel = self.childNode(withName: "Score") as? SKLabelNode{
            
                 myScoreLabel.text = "Score  \(score)"
