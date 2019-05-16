@@ -66,9 +66,9 @@ class GameScene: SKScene,SKPhysicsContactDelegate  {
            // basketballHoop.physicsBody = SKPhysicsBody(rectangleOf: basketballHoop.size)
             basketballHoop.physicsBody?.mass = 1
             basketballHoop.scale(to: CGSize(width: 653, height: 496))
-            basketballHoop.position = CGPoint(x: -0, y: 419)
+            basketballHoop.position = CGPoint(x: 0, y: 1760)
             basketballHoop.physicsBody?.categoryBitMask = 2
-            basketballHoop.zPosition = -1
+            basketballHoop.zPosition = 2
             //enemy.physicsBody?.collisionBitMask = PhysicsCategory.none
             addChild(basketballHoop)
             
