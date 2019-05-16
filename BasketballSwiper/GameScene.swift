@@ -35,7 +35,6 @@ class GameScene: SKScene,SKPhysicsContactDelegate  {
         physicsWorld.contactDelegate = self
        //self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         let border = SKPhysicsBody(edgeLoopFrom: self.frame)
-        
         self.physicsBody = border
         
         createBasketballHoop()
