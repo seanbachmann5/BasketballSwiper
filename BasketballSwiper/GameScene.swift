@@ -26,18 +26,20 @@ class GameScene: SKScene,SKPhysicsContactDelegate  {
         hit += 1
         print("score count was called \(hit)")
         score += 1
-            if let myScoreLabel = self.childNode(withName: "Score") as? SKLabelNode{
-            myScoreLabel.text = "Score  \(score)"
+            if let myScoreLabel = self.childNode(withName: "Dribbles") as? SKLabelNode{
+            myScoreLabel.text = "Dribbles  \(score)"
         }
     }
    
     override func didMove(to view: SKView) {
+        createBasketballHoop()
+        print("basketball hoop spawned epic")
         physicsWorld.contactDelegate = self
        //self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         let border = SKPhysicsBody(edgeLoopFrom: self.frame)
         self.physicsBody = border
         
-        createBasketballHoop()
+        
         
         //player.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         player = SKSpriteNode(imageNamed: "Basketball")
@@ -66,9 +68,9 @@ class GameScene: SKScene,SKPhysicsContactDelegate  {
            // basketballHoop.physicsBody = SKPhysicsBody(rectangleOf: basketballHoop.size)
             basketballHoop.physicsBody?.mass = 1
             basketballHoop.scale(to: CGSize(width: 653, height: 496))
-            basketballHoop.position = CGPoint(x: -0, y: 419)
+            basketballHoop.position = CGPoint(x: 0, y: 1765)
             basketballHoop.physicsBody?.categoryBitMask = 2
-            basketballHoop.zPosition = -1
+            basketballHoop.zPosition = 0
             //enemy.physicsBody?.collisionBitMask = PhysicsCategory.none
             addChild(basketballHoop)
             
