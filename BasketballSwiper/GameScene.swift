@@ -27,19 +27,19 @@ class GameScene: SKScene,SKPhysicsContactDelegate  {
         print("score count was called \(hit)")
         score += 1
             if let myScoreLabel = self.childNode(withName: "Score") as? SKLabelNode{
-            myScoreLabel.text = "Score  \(score)"
+            myScoreLabel.text = "Dribbles  \(score)"
         }
     }
    
     override func didMove(to view: SKView) {
         physicsWorld.contactDelegate = self
         let border = SKPhysicsBody(edgeLoopFrom: self.frame)
-        self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        //self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         self.physicsBody = border
         
         createBasketballHoop()
         
-        player.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        //player.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         player = SKSpriteNode(imageNamed: "Basketball")
         player.position = CGPoint(x: 0, y: 0)
         player.scale(to: CGSize(width: 75, height: 75))
