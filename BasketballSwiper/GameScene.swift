@@ -16,18 +16,18 @@ struct physicsCategory {
 
 var player = SKSpriteNode()
 var basketballHoop = SKSpriteNode()
-var score = 0
+var dribbles = 0
 var myScoreLabel:SKLabelNode!
 var hit = 0
 
 class GameScene: SKScene,SKPhysicsContactDelegate  {
     
-    func scoreCount() {
+    func dribblesCount() {
         hit += 1
         print("score count was called \(hit)")
-        score += 1
+        dribbles += 1
             if let myScoreLabel = self.childNode(withName: "Dribbles") as? SKLabelNode{
-            myScoreLabel.text = "Dribbles  \(score)"
+            myScoreLabel.text = "Dribbles  \(dribbles)"
         }
     }
    
@@ -80,6 +80,6 @@ class GameScene: SKScene,SKPhysicsContactDelegate  {
     
         func didBegin(_ contact: SKPhysicsContact) {
             print("Add Score")
-            scoreCount()
+            dribblesCount()
         }
     }
