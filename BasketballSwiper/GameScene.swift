@@ -24,7 +24,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate  {
     
     func dribblesCount() {
         hit += 1
-        print("score count was called \(hit)")
+        print("dribble count was called \(hit)")
         dribbles += 1
             if let myScoreLabel = self.childNode(withName: "Dribbles") as? SKLabelNode{
             myScoreLabel.text = "Dribbles  \(dribbles)"
@@ -48,7 +48,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate  {
         player.zPosition = 1
         player.physicsBody = SKPhysicsBody(circleOfRadius: player.size.width / 2)
         player.physicsBody?.contactTestBitMask = 2
-        player.physicsBody?.categoryBitMask = 1
+        player.physicsBody?.categoryBitMask = physicsCategory.player
         player.physicsBody?.affectedByGravity = true
         player.physicsBody?.mass = 0.1
         self.addChild(player)
@@ -67,19 +67,22 @@ class GameScene: SKScene,SKPhysicsContactDelegate  {
             //enemy.position = randomPoint()
            // basketballHoop.physicsBody = SKPhysicsBody(rectangleOf: basketballHoop.size)
             basketballHoop.physicsBody?.mass = 1
-            basketballHoop.scale(to: CGSize(width: 653, height: 496))
+            basketballHoop.scale(to: CGSize(width: 705, height: 496))
             basketballHoop.position = CGPoint(x: 0, y: 1765)
             basketballHoop.physicsBody?.categoryBitMask = 2
+            basketballHoop.physicsBody?.contactTestBitMask = 1
             basketballHoop.zPosition = 0
             //enemy.physicsBody?.collisionBitMask = PhysicsCategory.none
             addChild(basketballHoop)
             
-            let actionMove = SKAction.pause()
-                basketballHoop.run(SKAction.sequence([actionMove]))
+            
+         //   let actionMove = SKAction.pause()
+              //  basketballHoop.run(SKAction.sequence([actionMove]))
+           
         }
     
         func didBegin(_ contact: SKPhysicsContact) {
-            print("Add Score")
+            print("Add Dribbles")
             dribblesCount()
         }
     }
