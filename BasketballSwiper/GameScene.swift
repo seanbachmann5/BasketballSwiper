@@ -17,19 +17,31 @@ struct physicsCategory {
 var player = SKSpriteNode()
 var basketballHoop = SKSpriteNode()
 var dribbles = 0
+var score = 0
+var myDribbleLabel:SKLabelNode!
 var myScoreLabel:SKLabelNode!
 var hit = 0
 
 class GameScene: SKScene,SKPhysicsContactDelegate  {
-    
+// score / dribble funcs
     func dribblesCount() {
         hit += 1
         print("dribble count was called \(hit)")
         dribbles += 1
-            if let myScoreLabel = self.childNode(withName: "Dribbles") as? SKLabelNode{
-            myScoreLabel.text = "Dribbles  \(dribbles)"
+            if let myDribbleabel = self.childNode(withName: "Dribbles") as? SKLabelNode{
+            myDribbleLabel.text = "Dribbles  \(dribbles)"
         }
     }
+    
+    func scoreCount() {
+        score += 1
+        if let myScoreLabel = self.childNode(withName: "Score") as? SKLabelNode{
+            myScoreLabel.text = "Score  \(score)"
+        }
+    }
+    
+    
+    
    
     override func didMove(to view: SKView) {
         createBasketballHoop()
@@ -65,13 +77,17 @@ class GameScene: SKScene,SKPhysicsContactDelegate  {
         func createBasketballHoop() {
             let basketballHoop = SKSpriteNode(imageNamed: "Basketball Hoop")
             //enemy.position = randomPoint()
-           // basketballHoop.physicsBody = SKPhysicsBody(rectangleOf: basketballHoop.size)
+            basketballHoop.physicsBody = SKPhysicsBody(rectangleOf: basketballHoop.size)
             basketballHoop.physicsBody?.mass = 1
             basketballHoop.scale(to: CGSize(width: 705, height: 496))
             basketballHoop.position = CGPoint(x: 0, y: 1765)
             basketballHoop.physicsBody?.categoryBitMask = 2
             basketballHoop.physicsBody?.contactTestBitMask = 1
-            basketballHoop.zPosition = 0
+            basketballHoop.zPosition = -1
+            basketballHoop.physicsBody?.affectedByGravity = false
+            basketballHoop.physicsBody?.pinned = true
+            basketballHoop.physicsBody?.allowsRotation = false
+            basketballHoop.physicsBody?.isDynamic = false
             //enemy.physicsBody?.collisionBitMask = PhysicsCategory.none
             addChild(basketballHoop)
             
