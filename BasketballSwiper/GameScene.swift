@@ -26,8 +26,8 @@ class GameScene: SKScene,SKPhysicsContactDelegate  {
         hit += 1
         print("score count was called \(hit)")
         score += 1
-            if let myScoreLabel = self.childNode(withName: "Dribbles") as? SKLabelNode{
-            myScoreLabel.text = "Dribbles  \(score)"
+            if let myDribbleLabel = self.childNode(withName: "Dribbles") as? SKLabelNode{
+            myDribbleLabel.text = "Dribbles  \(score)"
         }
     }
    
