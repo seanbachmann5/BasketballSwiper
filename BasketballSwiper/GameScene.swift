@@ -42,25 +42,66 @@ class GameScene: SKScene,SKPhysicsContactDelegate  {
         
         
         //player.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        player = SKSpriteNode(imageNamed: "Basketball")
-        player.position = CGPoint(x: 0, y: 0)
-        player.scale(to: CGSize(width: 75, height: 75))
-        player.zPosition = 1
-        player.physicsBody = SKPhysicsBody(circleOfRadius: player.size.width / 2)
-        player.physicsBody?.contactTestBitMask = 2
-        player.physicsBody?.categoryBitMask = physicsCategory.player
-        player.physicsBody?.affectedByGravity = true
-        player.physicsBody?.mass = 0.1
-        self.addChild(player)
-    }
-    
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for touch in touches{
-        let location = touch.location(in: self)
-            player.position.x = location.x
-            player.position.y = location.y
+       // player = SKSpriteNode(imageNamed: "Basketball")
+    //layer.position = CGPoint(x: 0, y: 0)
+       // player.scale(to: CGSize(width: 75, height: 75))
+       // player.zPosition = 1
+        //player.physicsBody = SKPhysicsBody(circleOfRadius: player.size.width / 2)
+        //player.physicsBody?.contactTestBitMask = 2
+        //player.physicsBody?.categoryBitMask = physicsCategory.player
+        //player.physicsBody?.affectedByGravity = true
+        //player.physicsBody?.mass = 0.1
+        
+        let player = "Basketball"
+        
+        class PlayerScene: SKScene {
+            
+            var player: SKSpriteNode?
+            
+            
+            override func didMove(to view: SKView) {
+                
+                player = childNode(withName: "woodPlank") as? SKSpriteNode
+                
+                
+                let swipeRight : UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: Selector("swipedRight:"))
+                
+                swipeRight.direction = .right
+                
+                view.addGestureRecognizer(swipeRight)
+                
+            }
+            
+            
+            func swipedRight(sender: UISwipeGestureRecognizer) {
+                
+                print("Object has been swiped")
+                
+            }
+            
+            
+            func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent)
+            {
+                let touch = touches.first as! UITouch
+                let location = touch.location(in: self)
+                
+                if (player?.frame.contains(location))!
+                {
+                    print("Swipe has started")
+                }
+            }
+            
         }
-    }
+        
+    
+    
+    //override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+      //  for touch in touches{
+       // let location = touch.location(in: self)
+       //     player.position.x = location.x
+       //     player.position.y = location.y
+      //  }
+   // }
     
         func createBasketballHoop() {
             let basketballHoop = SKSpriteNode(imageNamed: "Basketball Hoop")
@@ -86,3 +127,4 @@ class GameScene: SKScene,SKPhysicsContactDelegate  {
             dribblesCount()
         }
     }
+}
