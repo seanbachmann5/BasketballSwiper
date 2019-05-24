@@ -39,14 +39,6 @@ class GameScene: SKScene,SKPhysicsContactDelegate  {
         //run the action on your ship
         player.run(seq, withKey: forTheKey)
     }
-
-    
-    
-    
-    
-    
-    
-    
     
    
     override func didMove(to view: SKView) {
@@ -57,8 +49,6 @@ class GameScene: SKScene,SKPhysicsContactDelegate  {
        //self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         let border = SKPhysicsBody(edgeLoopFrom: self.frame)
         self.physicsBody = border
-        
-        
         
         //player.anchorPoint = CGPoint(x: 0.5, y: 0.5)
       
@@ -87,8 +77,6 @@ class GameScene: SKScene,SKPhysicsContactDelegate  {
             player.physicsBody?.mass = 0.1
         self.addChild(player)
     }
-    
-    
     
             func createBasketballHoop() {
                 basketballHoop = SKSpriteNode(imageNamed: "Basketball Hoop")
@@ -119,7 +107,29 @@ class GameScene: SKScene,SKPhysicsContactDelegate  {
                     scoreCount()
                     }
                     
-                   
+    func didMoveToView() -> (SKView) {
+        UILongPressGestureRecognizer = [[UILongPressGestureRecognizer, alloc], initWithTarget,:self action:@selector(tappedScreen:)];
+    tapper.minimumPressDuration = 0.1;
+        [view, UIGestureRecognizer.self,:tapper] as [Any];
+    }
+    
+    tappedScreen:(UITapGestureRecognizer *)recognizer
+    {
+    float touchY = [self convertPointFromView:[recognizer locationInView:self.view]].y;
+    SKSpriteNode *ship = [self childNodeWithName:@"Basketball"];
+    if (recognizer.state == UIGestureRecognizerStateBegan) {
+    if(touchY >ship.position.y){
+    [player runAction:[SKAction repeatActionForever:actionMoveUp] withKey:@"longTap"];
+    }
+    else{
+    [player runAction:[SKAction repeatActionForever:actionMoveDown] withKey:@"longTap"];
+    }
+    }
+    if (recognizer.state == UIGestureRecognizerStateEnded) {
+    [player removeActionForKey:@"longTap"];
+    }
+    }
+
            
             
             
