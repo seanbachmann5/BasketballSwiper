@@ -105,32 +105,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate  {
                         print("Add Dribbles")
                    
                     scoreCount()
-                    }
-                    
-    func didMoveToView() -> (SKView) {
-        UILongPressGestureRecognizer = [[UILongPressGestureRecognizer, alloc], initWithTarget,:self action:@selector(tappedScreen:)];
-    tapper.minimumPressDuration = 0.1;
-        [view, UIGestureRecognizer.self,:tapper] as [Any];
     }
-    
-    tappedScreen:(UITapGestureRecognizer *)recognizer
-    {
-    float touchY = [self convertPointFromView:[recognizer locationInView:self.view]].y;
-    SKSpriteNode *ship = [self childNodeWithName:@"Basketball"];
-    if (recognizer.state == UIGestureRecognizerStateBegan) {
-    if(touchY >ship.position.y){
-    [player runAction:[SKAction repeatActionForever:actionMoveUp] withKey:@"longTap"];
-    }
-    else{
-    [player runAction:[SKAction repeatActionForever:actionMoveDown] withKey:@"longTap"];
-    }
-    }
-    if (recognizer.state == UIGestureRecognizerStateEnded) {
-    [player removeActionForKey:@"longTap"];
-    }
-    }
-
-           
             
             
 
