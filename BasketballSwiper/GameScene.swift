@@ -39,28 +39,74 @@ class GameScene: SKScene,SKPhysicsContactDelegate  {
         //run the action on your ship
         player.run(seq, withKey: forTheKey)
     }
+
+    
+    
+    
+    func addSwipeGestureRecognizers() {
+        let gestureDirections: [UISwipeGestureRecognizer.Direction] = [.up, .right, .left]
+        for gestureDirection in gestureDirections {
+            let gestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
+            gestureRecognizer.direction = gestureDirection
+            self.view?.addGestureRecognizer(gestureRecognizer)
+        }
+    }
+   
+    @objc func handleSwipe(gesture: UIGestureRecognizer) {
+    
+        if let gesture = gesture as? UISwipeGestureRecognizer {
+        switch gesture.direction {
+        case .up:
+            print("swpied up")
+            
+        case.right:
+            print("swiped right")
+            
+        case.left:
+            print("swiped left")
+        default:
+            print("No such gesture")
+            
+            }
+        
+          
+      
+                
+
+                
+            }
+        }
+
+    
+    
     
    
     override func didMove(to view: SKView) {
         createBasketballHoop()
         createPlayer()
+        addSwipeGestureRecognizers()
         print("basketball hoop spawned epic")
         physicsWorld.contactDelegate = self
-       //self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+       
+       
+        
+        
+        
+        
         let border = SKPhysicsBody(edgeLoopFrom: self.frame)
         self.physicsBody = border
         
-        //player.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        
       
     }
     
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for touch in touches{
-        let location = touch.location(in: self)
-            player.position.x = location.x
-           player.position.y = location.y
-        }
-    }
+    //override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+     //   for touch in touches{
+      //  let location = touch.location(in: self)
+          //  player.position.x = location.x
+        //   player.position.y = location.y
+      //  }
+//    }
      func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
      player.removeFromParent()
     }
@@ -75,7 +121,6 @@ class GameScene: SKScene,SKPhysicsContactDelegate  {
             player.physicsBody?.categoryBitMask = 1
             player.physicsBody?.affectedByGravity = true
             player.physicsBody?.mass = 0.1
-        self.addChild(player)
     }
     
             func createBasketballHoop() {
@@ -100,13 +145,50 @@ class GameScene: SKScene,SKPhysicsContactDelegate  {
                         //  basketballHoop.run(SKAction.sequence([actionMove]))
            
         }
+    func ballHitHoop(nodeA: SKSpriteNode, nodeB: SKSpriteNode){
+        nodeA.removeFromParent()
+        nodeB.removeFromParent()
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        //Step 1 get the location of where we touch
+        guard let touch = touches.first else{return
+        } //getting the location of last touch
+        let touchLocation = touch.location(in: self)
+        
+        //Step 2 set the location of the projectile
+        player.position = player.position
+        //projectile.physicsBody?.mass = 1
+            player.physicsBody?.categoryBitMask = physicsCategory.player// giving the projectile a category bitmask of 1
+        player.physicsBody?.contactTestBitMask = physicsCategory.basketballHoop // being notified when the star hits the mask of a enemy
+        //projectile.physicsBody?.collisionBitMask = PhysicsCategory.none
+        addChild(player)
+        
+        //Step 3 Determine where to fire the projectile
+        let offSet = touchLocation - player.position
+        let direction = offSet.normalized()
+        let shootAmount = direction * 1000
+        let realDest = shootAmount + player.position
+        
+        //Step 4 create the actions
+        let actionMove = SKAction.move(to: realDest, duration: TimeInterval(2.0))
+        let actionMoveDone = SKAction.removeFromParent()
+        player.run(SKAction.sequence([actionMove,actionMoveDone]))
+        
+    }
+    
+    
+    
+    
+    
     
                 func didBegin(_ contact: SKPhysicsContact) {
-                        print("Add Dribbles")
-                   
+                       // print("Add Dribbles")
+                    let one = contact.bodyA.node as? SKSpriteNode
+                    let two = contact.bodyB.node as? SKSpriteNode
+                    
                     scoreCount()
-    }
-            
-            
-
-}
+                    
+                 
+                }
+            }
